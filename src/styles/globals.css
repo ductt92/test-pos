@@ -38,3 +38,35 @@ main {
 .checkboxGroup span {
   color: #007aff !important;
 }
+
+.ant-pagination-item {
+  background: #e0e6ed !important;
+  border-radius: 50% !important;
+}
+.ant-pagination-item .ant-pagination-item-active {
+  color: #007aff !important;
+  border: 22px solid #007aff !important;
+}
+.ant-table-thead .ant-table-cell {
+  background-color: #fff !important;
+}
+
+.ant-table-cell::before {
+  width: 0px !important;
+}
+.ant-modal-content {
+  padding: 0 !important;
+}
+.ant-checkbox-wrapper
+  .ant-checkbox-wrapper-checked
+  .ant-checkbox-group-item
+  .css-dev-only-do-not-override-nnuwmp {
+}
+
+.newCheckBox .ant-checkbox-wrapper {
+  background: #f2f9ff !important;
+}
+.newChecBox .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #fff !important;
+  border: 1px solid #4361ee !important;
+}

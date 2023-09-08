@@ -11,9 +11,9 @@ export default function ArrowDown({ ...props }) {
       <path
         d='M9 1L5 5L1 1'
         stroke='#007AFF'
-        stroke-width='1.5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
     </svg>
   );
