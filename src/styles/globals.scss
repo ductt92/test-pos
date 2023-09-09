@@ -93,3 +93,11 @@ main {
 .ant-menu-item::after {
   border: none !important;
 }
+.ant-modal-close-x {
+  display: none !important;
+}
+.ant-modal-header {
+  padding: 0px !important;
+  border-top-right-radius: 6px !important;
+  border-top-left-radius: 6px !important;
+}

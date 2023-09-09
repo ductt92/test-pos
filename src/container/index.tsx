@@ -63,7 +63,7 @@ const HomePageTest = () => {
           <HeaderModal title='Điều chỉnh cột hiển thị' onClose={handleCancel} />
         }
         visible={openModal}
-        closeIcon={false}
+        closable={false}
         onOk={handleCancel}
         onCancel={handleCancel}
         footer={null}
