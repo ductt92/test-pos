@@ -92,6 +92,7 @@ const SelectCustome = ({ children, ...rest }: SelectProps) => {
       suffixIcon={<ArrowDown />}
       className='w-full rounded-[5px]'
       tagRender={tagRender}
+      defaultValue={[1, 2]}
       dropdownRender={renderDropDown}
       {...rest}
     >

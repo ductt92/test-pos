@@ -1,4 +1,4 @@
-import { UserAddOutlined } from '@ant-design/icons';
+import ProducIcon from '@/app/components/Icon/ProductIcon';
 
 interface IRoutes {
   path: string;
@@ -9,7 +9,7 @@ interface IRoutes {
 export const routes: IRoutes[] = [
   {
     path: '/',
-    title: 'Kế hoạch',
-    icons: <UserAddOutlined className='-translate-x-1 text-xl' />,
+    title: 'Sản phẩm',
+    icons: <ProducIcon className='-translate-x-1 text-xl' />,
   },
 ];

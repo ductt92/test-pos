@@ -53,7 +53,7 @@ const HomePageTest = () => {
   };
 
   return (
-    <div className='p-40'>
+    <div className=''>
       <InputCustome />
 
       <button onClick={() => setOpenModal(true)}>Show</button>
@@ -62,7 +62,7 @@ const HomePageTest = () => {
         title={
           <HeaderModal title='Điều chỉnh cột hiển thị' onClose={handleCancel} />
         }
-        open={openModal}
+        visible={openModal}
         closeIcon={false}
         onOk={handleCancel}
         onCancel={handleCancel}
@@ -73,7 +73,7 @@ const HomePageTest = () => {
         <ContentModal />
       </Modal>
       <Modal
-        open={openModalFilter}
+        visible={openModalFilter}
         title={<HeaderModal title='Bộ lọc' onClose={handleCancel} />}
         closeIcon={false}
         onOk={handleCancel}

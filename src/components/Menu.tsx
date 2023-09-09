@@ -82,7 +82,7 @@ const MenuContainer = () => {
 
   return (
     <div className='flex flex-col bg-white pt-9'>
-      <div className='flex-1'>
+      <div className='flex-1 p-2'>
         <Menu
           onClick={handleRedirect}
           defaultSelectedKeys={defaultSelectKey}
