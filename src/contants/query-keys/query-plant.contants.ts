@@ -1,0 +1,3 @@
+export const QUERY_PLANT = {
+  QUERY_LIST_PLANT: 'QUERY_LIST_PLANT',
+};
