@@ -3,6 +3,7 @@ import { Button, Dropdown, Modal, Pagination, Select, Table } from 'antd';
 import React, { useState } from 'react';
 
 import ContentModal from '@/app/components/ContentModal';
+import FilterModal from '@/app/components/FilterContent';
 import HeaderModal from '@/app/components/HeaderModal';
 import AddIcon from '@/app/components/Icon/AddIcon';
 import FilterIcon from '@/app/components/Icon/FilterIcon';
@@ -19,6 +20,8 @@ const { Option } = Select;
 const HomePageTest = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openModalFilter, setOpenModalFilter] = useState<boolean>(false);
+
   const items = [
     {
       key: '1',
@@ -46,6 +49,7 @@ const HomePageTest = () => {
 
   const handleCancel = () => {
     setOpenModal(false);
+    setOpenModalFilter(false);
   };
 
   return (
@@ -68,6 +72,18 @@ const HomePageTest = () => {
       >
         <ContentModal />
       </Modal>
+      <Modal
+        open={openModalFilter}
+        title={<HeaderModal title='Bộ lọc' onClose={handleCancel} />}
+        closeIcon={false}
+        onOk={handleCancel}
+        onCancel={handleCancel}
+        footer={null}
+        width={750}
+        className='top-[20px]'
+      >
+        <FilterModal />
+      </Modal>
       <SelectCustome>
         <Option value='test'>Test</Option>
         <Option value='test2'>Test 2</Option>
@@ -75,6 +91,7 @@ const HomePageTest = () => {
         <Option value='test4'>Test 4</Option>
       </SelectCustome>
       <Button
+        onClick={() => setOpenModalFilter(true)}
         icon={<FilterIcon />}
         className='flex h-[35px] flex-row items-center justify-center border-[#fff] bg-[#fff] text-[#007AFF]'
       >
