@@ -2,10 +2,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Checkbox, Input } from 'antd';
 import { CheckboxValueType } from 'antd/es/checkbox/Group';
+import { useState } from 'react';
 
+import OptionShow from '@/app/components/OptionsShow';
 import { columData } from '@/app/container/columns';
 
 const ContentModal = () => {
+  const [selectedOptions, setSelectedOptions] = useState<Array<string>>([]);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //  @ts-ignore
   const dataOpition: { label: any; value: any } = columData.map((v) => {
@@ -18,7 +21,12 @@ const ContentModal = () => {
   });
 
   const onChange = (checkedValues: CheckboxValueType[]) => {
-    console.log('checked = ', checkedValues);
+    const setOptions = new Set([
+      ...selectedOptions.filter((item) => checkedValues.includes(item)),
+      ...checkedValues,
+    ]);
+    const options = Array.from(setOptions).map((item) => item as string);
+    setSelectedOptions(options);
   };
 
   return (
@@ -38,6 +46,7 @@ const ContentModal = () => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             //  @ts-ignore
             options={dataOpition}
+            value={selectedOptions}
             onChange={onChange}
             className='newCheckBox flex flex-col gap-y-2'
           />
@@ -53,6 +62,10 @@ const ContentModal = () => {
             Di chuyển để sắp xếp cột hiển thị
           </p>
         </div>
+        <OptionShow
+          options={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
+        />
       </div>
     </div>
   );
