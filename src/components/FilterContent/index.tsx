@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import FilterIcon from '@/app/components/Icon/FilterIcon';
 import InputCustome from '@/app/components/InputCustom';
 import SelectCustome from '@/app/components/SelectCustom';
+const { Panel } = Collapse;
 
 const FilterModal = () => {
   const filterCollapse = useMemo(
@@ -61,7 +62,15 @@ const FilterModal = () => {
         </p>
       </div>
       <div className='grid w-full flex-grow grid-cols-1 divide-y divide-[#DCDCDC]'>
-        <Collapse accordion items={filterCollapse} ghost />
+        <Collapse accordion ghost>
+          {filterCollapse.map((v) => {
+            return (
+              <Panel header='This is panel header 1' key='1'>
+                <p>{v.label}</p>
+              </Panel>
+            );
+          })}
+        </Collapse>
       </div>
       <div className='flex w-full items-center justify-center gap-3 py-3'>
         <Button danger className='w-[86px] font-semibold'>

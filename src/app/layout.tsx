@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import * as React from 'react';
 
 import '@/styles/globals.css';
@@ -9,7 +8,7 @@ import { siteConfig } from '@/constant/config';
 
 // !STARTERCONF Change these default meta
 // !STARTERCONF Look at @/constant/config to change them
-export const metadata: Metadata = {
+export const metadata = {
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.title}`,

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Button, Dropdown, Modal, Pagination, Select, Table } from 'antd';
+import { Button, Dropdown, Menu, Modal, Pagination, Select, Table } from 'antd';
 import React, { useState } from 'react';
 
 import ContentModal from '@/app/components/ContentModal';
@@ -22,21 +22,6 @@ const HomePageTest = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openModalFilter, setOpenModalFilter] = useState<boolean>(false);
 
-  const items = [
-    {
-      key: '1',
-      label: '1st item',
-    },
-    {
-      key: '2',
-      label: '2nd item',
-    },
-    {
-      key: '3',
-      label: '3rd item',
-    },
-  ];
-
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     console.log('selectedRowKeys changed: ', newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
@@ -52,6 +37,17 @@ const HomePageTest = () => {
     setOpenModalFilter(false);
   };
 
+  const menu = (
+    <Menu>
+      <Menu.Item>item 1</Menu.Item>
+      <Menu.Item>item 2</Menu.Item>
+    </Menu>
+  );
+
+  // const items = [
+  //   { label: 'item 1', key: 'item-1' }, // remember to pass the key prop
+  //   { label: 'item 2', key: 'item-2' },
+  // ];
   return (
     <div className='p-40'>
       <InputCustome />
@@ -62,7 +58,7 @@ const HomePageTest = () => {
         title={
           <HeaderModal title='Điều chỉnh cột hiển thị' onClose={handleCancel} />
         }
-        open={openModal}
+        visible={openModal}
         closeIcon={false}
         onOk={handleCancel}
         onCancel={handleCancel}
@@ -73,7 +69,7 @@ const HomePageTest = () => {
         <ContentModal />
       </Modal>
       <Modal
-        open={openModalFilter}
+        visible={openModalFilter}
         title={<HeaderModal title='Bộ lọc' onClose={handleCancel} />}
         closeIcon={false}
         onOk={handleCancel}
@@ -99,14 +95,14 @@ const HomePageTest = () => {
       </Button>
       <br />
       <div className='flex flex-row gap-x-[1px]'>
-        <button className='flex h-[35px] flex-row items-center justify-center rounded-l-[4px] rounded-r-[0px] border-[none] bg-[#007AFF] p-[6px] text-[#fff]'>
+        <button className='border-[none] flex h-[35px] flex-row items-center justify-center rounded-l-[4px] rounded-r-[0px] bg-[#007AFF] p-[6px] text-[#fff]'>
           <div className='flex min-w-[120px] flex-row gap-2'>
             <AddIcon />
             <span> Thêm mới</span>
           </div>
         </button>
 
-        <Dropdown menu={{ items }} trigger={['click']} placement='bottomRight'>
+        <Dropdown overlay={menu} trigger={['click']} placement='bottomRight'>
           <div
             onClick={(e) => e.preventDefault()}
             className='flex h-[35px] w-[35px] cursor-pointer flex-col items-center justify-center rounded-r-[4px] bg-[#007AFF]'

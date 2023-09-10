@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Button, Dropdown, Modal, Pagination, Select, Table } from 'antd';
+import { Button, Modal, Pagination, Select, Table } from 'antd';
 import React, { useState } from 'react';
 
 import ContentModal from '@/app/components/ContentModal';
@@ -9,7 +9,6 @@ import AddIcon from '@/app/components/Icon/AddIcon';
 import FilterIcon from '@/app/components/Icon/FilterIcon';
 import FirstRow from '@/app/components/Icon/FirstRow';
 import LastRow from '@/app/components/Icon/LastRow';
-import ThreeDot from '@/app/components/Icon/ThreeDot';
 import InputCustome from '@/app/components/InputCustom';
 import SelectCustome from '@/app/components/SelectCustom';
 import { columData } from '@/app/container/columns';
@@ -22,20 +21,20 @@ const HomePageTest = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openModalFilter, setOpenModalFilter] = useState<boolean>(false);
 
-  const items = [
-    {
-      key: '1',
-      label: '1st item',
-    },
-    {
-      key: '2',
-      label: '2nd item',
-    },
-    {
-      key: '3',
-      label: '3rd item',
-    },
-  ];
+  // const items = [
+  //   {
+  //     key: '1',
+  //     label: '1st item',
+  //   },
+  //   {
+  //     key: '2',
+  //     label: '2nd item',
+  //   },
+  //   {
+  //     key: '3',
+  //     label: '3rd item',
+  //   },
+  // ];
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     console.log('selectedRowKeys changed: ', newSelectedRowKeys);
@@ -106,14 +105,14 @@ const HomePageTest = () => {
           </div>
         </button>
 
-        <Dropdown menu={{ items }} trigger={['click']} placement='bottomRight'>
+        {/* <Dropdown  trigger={['click']} placement='bottomRight'>
           <div
             onClick={(e) => e.preventDefault()}
             className='flex h-[35px] w-[35px] cursor-pointer flex-col items-center justify-center rounded-r-[4px] bg-[#007AFF]'
           >
             <ThreeDot />
           </div>
-        </Dropdown>
+        </Dropdown> */}
       </div>
       <Table
         dataSource={dataSource}
