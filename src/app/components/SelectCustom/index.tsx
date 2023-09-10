@@ -5,7 +5,12 @@ import { Checkbox } from 'antd';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import type { CheckboxValueType } from 'antd/es/checkbox/Group';
 import type { CustomTagProps } from 'rc-select/lib/BaseSelect';
-import { JSXElementConstructor, ReactElement, useState } from 'react';
+import {
+  JSXElementConstructor,
+  ReactElement,
+  useEffect,
+  useState,
+} from 'react';
 
 import ArrowDown from '@/app/components/Icon/ArrowDownIcon';
 import CloseIcon from '@/app/components/Icon/CloseIcon';
@@ -18,7 +23,11 @@ const plainOptions = [
 ];
 const defaultCheckedList = [1, 2];
 
-const SelectCustome = ({ children, ...rest }: SelectProps) => {
+interface ISelectCustom extends SelectProps {
+  setSelect?: (options: Array<string>) => void;
+}
+
+const SelectCustome = ({ children, setSelect, ...rest }: ISelectCustom) => {
   const [checkedList, setCheckedList] =
     useState<CheckboxValueType[]>(defaultCheckedList);
 
@@ -26,6 +35,9 @@ const SelectCustome = ({ children, ...rest }: SelectProps) => {
   const indeterminate =
     checkedList.length > 0 && checkedList.length < plainOptions.length;
 
+  useEffect(() => {
+    setSelect?.(checkedList as Array<string>);
+  }, [setSelect, checkedList]);
   const onChange = (list: CheckboxValueType[]) => {
     setCheckedList(list);
   };
@@ -92,8 +104,8 @@ const SelectCustome = ({ children, ...rest }: SelectProps) => {
       suffixIcon={<ArrowDown />}
       className='w-full rounded-[5px]'
       tagRender={tagRender}
-      defaultValue={[1, 2]}
       dropdownRender={renderDropDown}
+      value={checkedList}
       {...rest}
     >
       {children}
