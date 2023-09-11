@@ -2,6 +2,9 @@
 import { Button, Modal, Pagination, Select, Table } from 'antd';
 import React, { useState } from 'react';
 
+import ChipsSearch from '@/components/ChipsSearch';
+import StatusTab from '@/components/StatusTab';
+
 import ContentModal from '@/app/components/ContentModal';
 import FilterModal from '@/app/components/FilterContent';
 import HeaderModal from '@/app/components/HeaderModal';
@@ -56,7 +59,12 @@ const HomePageTest = () => {
       <InputCustome />
 
       <button onClick={() => setOpenModal(true)}>Show</button>
-
+      <div className='mb-2'>
+        <StatusTab />
+      </div>
+      <div className='mb-2'>
+        <ChipsSearch />
+      </div>
       <Modal
         title={
           <HeaderModal title='Điều chỉnh cột hiển thị' onClose={handleCancel} />
