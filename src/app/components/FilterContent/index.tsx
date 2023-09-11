@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Collapse, Modal } from 'antd';
 import { Fragment, useMemo, useState } from 'react';
 
@@ -8,7 +9,15 @@ import SelectCustome from '@/app/components/SelectCustom';
 
 const { Panel } = Collapse;
 
-const FilterModal = () => {
+export type TFilterModalProps = {
+  handleSaveFilter: (filterOptions: Array<Array<string>>) => void;
+  handleCancelFilter: () => void;
+};
+
+const FilterModal = ({
+  handleSaveFilter,
+  handleCancelFilter,
+}: TFilterModalProps) => {
   const [filterOptions, setFilterOptions] = useState<Array<Array<string>>>([
     ['1', '2'],
     ['1', '2'],
@@ -18,6 +27,14 @@ const FilterModal = () => {
 
   const [openModalFilterSave, setOpenModalFilterSave] =
     useState<boolean>(false);
+  const [filters, setFilters] = useState<Array<any>>([]);
+
+  const handleOpenSave = () => {
+    const filtersLocal = localStorage.getItem('filters');
+    const filters = filtersLocal ? JSON.parse(filtersLocal) : [];
+    setFilters(filters);
+    setOpenModalFilterSave(true);
+  };
 
   const getExtraCollapse = (idx: number) => {
     const options = filterOptions?.[idx];
@@ -63,6 +80,9 @@ const FilterModal = () => {
     setOpenModalFilterSave(false);
   };
 
+  const handleLoadFilter = (filters: any) => {
+    setFilterOptions(filters);
+  };
   return (
     <Fragment>
       <Modal
@@ -74,11 +94,14 @@ const FilterModal = () => {
         width={380}
       >
         <div className='-mx-6 grid grid-cols-1'>
-          {Array(4)
-            .fill(1)
-            .map((_, idx) => (
-              <SaveFilterItem key={idx} />
-            ))}
+          {filters.map((item, idx) => (
+            <SaveFilterItem
+              key={idx}
+              name={item.name}
+              index={idx}
+              onClick={() => handleLoadFilter(item.filter)}
+            />
+          ))}
         </div>
       </Modal>
       <div className='flex min-h-[540px] w-full flex-col items-center divide-y divide-[#DCDCDC] 2xl:min-h-[936px]'>
@@ -86,7 +109,7 @@ const FilterModal = () => {
           <InputCustome placeholder='Tìm kiếm bộ lọc' />
           <p
             className='mt-3 flex cursor-pointer text-[#007AFF]'
-            onClick={() => setOpenModalFilterSave(true)}
+            onClick={handleOpenSave}
           >
             <FilterIcon /> <span className='mx-2'>Bộ lọc đã lưu</span>
           </p>
@@ -124,12 +147,17 @@ const FilterModal = () => {
           </Collapse>
         </div>
         <div className='flex w-full items-center justify-center gap-3 py-3'>
-          <Button danger className='w-[86px] font-semibold'>
+          <Button
+            danger
+            className='w-[86px] font-semibold'
+            onClick={() => handleCancelFilter()}
+          >
             Hủy
           </Button>
           <Button
             type='primary'
             className='w-[86px] bg-[#007AFF] font-semibold'
+            onClick={() => handleSaveFilter(filterOptions)}
           >
             Lọc
           </Button>
