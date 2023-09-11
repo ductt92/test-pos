@@ -23,7 +23,7 @@ const HomePageTest = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openModalFilter, setOpenModalFilter] = useState<boolean>(false);
-
+  const [, setFilterOption] = useState<Array<Array<string>>>([]);
   // const items = [
   //   {
   //     key: '1',
@@ -52,6 +52,23 @@ const HomePageTest = () => {
   const handleCancel = () => {
     setOpenModal(false);
     setOpenModalFilter(false);
+  };
+
+  const handleSaveFilter = (filterOptions: Array<Array<string>>) => {
+    console.log(handleSaveFilter);
+    const localFilter = localStorage.getItem('filters');
+    const listFilter = localFilter ? JSON.parse(localFilter) : [];
+
+    localStorage.setItem(
+      'filters',
+      JSON.stringify([...listFilter, { name: 'Lọc', filter: filterOptions }])
+    );
+    setFilterOption(filterOptions);
+    handleCancel();
+  };
+
+  const handleCancelFilter = () => {
+    handleCancel();
   };
 
   return (
@@ -89,7 +106,10 @@ const HomePageTest = () => {
         width={750}
         className='top-[20px]'
       >
-        <FilterModal />
+        <FilterModal
+          handleSaveFilter={handleSaveFilter}
+          handleCancelFilter={handleCancelFilter}
+        />
       </Modal>
       <SelectCustome>
         <Option value='test'>Test</Option>
